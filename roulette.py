@@ -103,7 +103,7 @@ Mỗi người chơi sẽ theo số thứ tự lần lượt "nổ súng". Nếu
 Hướng dẫn cách chơi:
 - Mỗi người chơi sẽ chạy chương trình này trên máy tính của mình, bảo đảm có thể giao tiếp với người chơi khác. Nhập ID phòng và số người chơi trong phòng đó, sau đó chọn số thứ tự (STT).
 - Khi bắt đầu trò chơi, không được cho người chơi khác xem màn hình của mình cho đến khi có thông báo về người chiến thắng hoặc bạn bị loại.
-- Trong khi chơi, người chơi luân phiên nhau theo thứ tự chọn ra một số trong bảng 6x6 đã cho trước, sau đó thông báo cho các người chơi khác con số mà mình chọn. Tất cả người chơi sẽ cùng nhập số mà người thông báo chọn. Quá trình này lặp lại kể cả khi có người bị loại. Khi hết bảng, một bảng mới sẽ được tạo và chuyển qua vòng mới.
+- Trong khi chơi, người chơi luân phiên nhau theo thứ tự chọn ra một số trong bảng 6x6 đã cho trước, sau đó thông báo cho các người chơi khác con số mà mình chọn. Tất cả người chơi sẽ cùng nhập số mà người thông báo chọn. Quá trình này lặp lại kể cả khi có người bị loại. Khi hết bảng hoặc có người bị loại do trúng "đạn", một bảng mới sẽ được tạo và chuyển qua vòng mới.
 - Để dành lấy chiến thắng thực sự, người chơi cần phải hợp tác với nhau để không để xảy ra bất kỳ sai sót nào. Nếu có người chơi bị loại mà không phải do trúng "đạn", lượt chọn của người chơi đó sẽ bị bỏ qua và tất cả người chơi còn lại phải đoán đúng số để sang lượt kế tiếp hoặc tìm ra được tên sát thủ.
 - Ngoài ra khi số lượng người chơi lớn hơn 6, sẽ có ngẫu nhiên một người là sát thủ. Thay vì nhập số trong bảng 6x6, người chơi có thể nhập số thứ tự của người chơi khác trước khi có người thông báo chọn số trong bảng 6x6 để tìm ra sát thủ. Nếu đoán đúng, người đoán là người chiến thắng và trò chơi kết thúc. Nếu đoán sai, người đoán sẽ bị loại ngay lập tức. Lưu ý chỉ có thể đoán được sát thủ khi số người chơi còn sống lớn hơn 6, vi phạm coi như xử thua. Sát thủ sẽ có một đặc quyền là không bị loại khỏi trò chơi dù có bị trúng "đạn" mà vẫn sẽ được tham gia cùng những người chơi khác. Đặc quyền này chỉ hiệu lực duy nhất 1 lần.
 Quy tắc phòng chơi:
@@ -270,6 +270,7 @@ while True:
         loser()
 
     if num == bullet and is_player_turn == True:
+        total_slot = 0
         if vip == True:
             vip = False
             print('Shhh, hãy cố gắng đánh lạc hướng các người chơi khác để họ không biết bạn đã trúng "đạn".')
@@ -280,6 +281,7 @@ while True:
             loser()
     if num == bullet and is_player_turn == False:
         total_player -= 1
+        total_slot = 0
         print('Đã có người chơi chọn phải ô có "đạn".')
         sleep(1)
 
