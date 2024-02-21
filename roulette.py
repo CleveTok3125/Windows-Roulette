@@ -269,7 +269,7 @@ while True:
         total_player = 0
         loser()
 
-    if num == bullet and is_player_turn == True:
+    if num in bullet and is_player_turn == True:
         total_slot = 0
         if vip == True:
             vip = False
@@ -279,7 +279,7 @@ while True:
             print('Số phận đã chọn bạn.')
             total_player = 0
             loser()
-    if num == bullet and is_player_turn == False:
+    if num in bullet and is_player_turn == False:
         total_player -= 1
         total_slot = 0
         print('Đã có người chơi chọn phải ô có "đạn".')
